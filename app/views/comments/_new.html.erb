@@ -1,5 +1,18 @@
 <%= form_with(model: [@movie, Comment.new], remote: true) do |form| %>
+<div class="movie_rate"></div>
 Your Comment:<br>
-<%= form.text_area :content, size: '50x20' %><br>
+<%= form.text_field :content, id: :movie_comments %>
 <%= form.submit %>
 <% end %>
+
+  <!-- 評価javascript -->
+  <script>
+  $('#movie_rate').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+
+    scoreName: 'comment[score]',
+    half: false,
+  });
+  </script> 

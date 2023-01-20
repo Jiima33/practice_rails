@@ -1,2 +1,16 @@
-<p><%= comment.content %></p>
-<p><%= link_to "Delete", [@movie, comment], method: :delete, data: {confirm: 'Are you sure?' } %></p>
+<p><%= tag.div('', class: 'score', data: {score: comment.score}) %></p>
+
+    <p>内容:<%= comment.content%></p>
+    <p>評価 :<%= comment.score%>点</p>
+    <div id="score<%= comment.id%>"></div>    
+    <script>
+      $('#score<%= comment.id%>').raty({
+        size      : 36,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        half      : false,
+        readOnly: true,
+        score: <%= comment.score %>,
+      });
+    </script>
+    <p><%= link_to "Delete", [@movie, comment], method: :delete, data: {confirm: 'Are you sure?' } %></p>
